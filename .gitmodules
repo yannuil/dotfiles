@@ -37,3 +37,6 @@
 [submodule "vim_bundles/ctrlp.vim"]
 	path = vim_bundles/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "vim_bundles/delimitMate"]
+	path = vim_bundles/delimitMate
+	url = git://github.com/Raimondi/delimitMate.git
