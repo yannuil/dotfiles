@@ -1,0 +1,39 @@
+[submodule "vim_bundles/zencoding-vim"]
+	path = vim_bundles/zencoding-vim
+	url = http://github.com/mattn/zencoding-vim.git
+[submodule "vim_bundles/xoria256.vim"]
+	path = vim_bundles/xoria256.vim
+	url = git://github.com/vim-scripts/xoria256.vim.git
+[submodule "vim_bundles/vim-surround"]
+	path = vim_bundles/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vim_bundles/vim-repeat"]
+	path = vim_bundles/vim-repeat
+	url = git://github.com/tpope/vim-repeat.git
+[submodule "vim_bundles/vim-less"]
+	path = vim_bundles/vim-less
+	url = https://github.com/groenewege/vim-less
+[submodule "vim_bundles/vim-irblack"]
+	path = vim_bundles/vim-irblack
+	url = git://github.com/wgibbs/vim-irblack.git
+[submodule "vim_bundles/vim-easymotion"]
+	path = vim_bundles/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion.git
+[submodule "vim_bundles/supertab"]
+	path = vim_bundles/supertab
+	url = git://github.com/ervandew/supertab.git
+[submodule "vim_bundles/ScrollColors"]
+	path = vim_bundles/ScrollColors
+	url = git://github.com/vim-scripts/ScrollColors.git
+[submodule "vim_bundles/python-mode"]
+	path = vim_bundles/python-mode
+	url = git://github.com/klen/python-mode.git
+[submodule "vim_bundles/nerdtree"]
+	path = vim_bundles/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim_bundles/molokai"]
+	path = vim_bundles/molokai
+	url = git://github.com/tomasr/molokai.git
+[submodule "vim_bundles/ctrlp.vim"]
+	path = vim_bundles/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
