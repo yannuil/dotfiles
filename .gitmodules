@@ -49,3 +49,6 @@
 [submodule "vim_bundles/tern.js"]
 	path = vim_bundles/tern.js
 	url = git://github.com/marijnh/tern_for_vim.git
+[submodule "vim_bundles/jshint.vim"]
+	path = vim_bundles/jshint.vim
+	url = git://github.com/wookiehangover/jshint.vim.git
