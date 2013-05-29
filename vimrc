@@ -1,19 +1,27 @@
 "No compatible
 set nocp
 
+let c='a'
+while c <= 'z'
+	exec "set <A-".c.">=\e".c
+	exec "imap \e".c." <A-".c.">"
+	let c = nr2char(1+char2nr(c))
+endw
+set timeout ttimeoutlen=50
+
 " Add vim bundle to runtimepath
 " And pathogen.vim is available to us.
-set runtimepath+=~/.vim_runtime
+set runtimepath+=/home/yann/.vim_runtime
 
-set rtp+=~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load pathogen paths
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call pathogen#infect('~/.vim_runtime/bundles')
+execute pathogen#infect('~/.vim_runtime/vim_bundles/{}')
 " Add the docs
-call pathogen#helptags()
+execute pathogen#helptags()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -107,6 +115,8 @@ set novisualbell
 set t_vb=
 set tm=500
 
+set mouse=a
+
 " Scroll Color
 map <silent><F3> :NEXTCOLOR<cr>
 map <silent><F2> :PREVCOLOR<cr>
@@ -145,11 +155,11 @@ if has("gui_running")
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
-		" Disable scrollbars (real hackers don't use scrollbars for navigation!)
-		set guioptions-=r
-		set guioptions-=R
-		set guioptions-=l
-		set guioptions-=L
+	" Disable scrollbars (real hackers don't use scrollbars for navigation!)
+	set guioptions-=r
+	set guioptions-=R
+	set guioptions-=l
+	set guioptions-=L
 endif
 
 " Set Font
@@ -180,9 +190,9 @@ set noexpandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
+" 1 tab = 4 spaces
+set shiftwidth=4
+set tabstop=4
 
 " Linebreak on 500 characters
 set lbr
