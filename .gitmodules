@@ -13,15 +13,9 @@
 [submodule "vim_bundles/vim-less"]
 	path = vim_bundles/vim-less
 	url = https://github.com/groenewege/vim-less
-[submodule "vim_bundles/vim-irblack"]
-	path = vim_bundles/vim-irblack
-	url = git://github.com/wgibbs/vim-irblack.git
 [submodule "vim_bundles/vim-easymotion"]
 	path = vim_bundles/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
-[submodule "vim_bundles/supertab"]
-	path = vim_bundles/supertab
-	url = git://github.com/ervandew/supertab.git
 [submodule "vim_bundles/ScrollColors"]
 	path = vim_bundles/ScrollColors
 	url = git://github.com/vim-scripts/ScrollColors.git
@@ -43,15 +37,21 @@
 [submodule "vim_bundles/nerdcommenter"]
 	path = vim_bundles/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "vim_bundles/javascript-indent"]
-	path = vim_bundles/javascript-indent
-	url = git://github.com/vim-scripts/JavaScript-Indent.git
 [submodule "vim_bundles/tern.js"]
 	path = vim_bundles/tern.js
 	url = git://github.com/marijnh/tern_for_vim.git
 [submodule "vim_bundles/jshint.vim"]
 	path = vim_bundles/jshint.vim
 	url = git://github.com/wookiehangover/jshint.vim.git
-[submodule "vim_bundles/ack.vim"]
-	path = vim_bundles/ack.vim
-	url = git://github.com/mileszs/ack.vim.git
+[submodule "vim_bundles/vim-javascript"]
+	path = vim_bundles/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
+[submodule "vim_bundles/vim-indent-guides"]
+	path = vim_bundles/vim-indent-guides
+	url = git@github.com:nathanaelkane/vim-indent-guides.git
+[submodule "vim_bundles/YouCompleteMe"]
+	path = vim_bundles/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "vim_bundles/ag.vim"]
+	path = vim_bundles/ag.vim
+	url = https://github.com/rking/ag.vim

@@ -163,6 +163,8 @@ set background=dark
 colorscheme xoria256
 
 set t_Co=256
+set t_AB=^[[48;5;%dm
+set t_AF=^[[38;5;%dm
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -491,15 +493,6 @@ endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => YouCompleteMe
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_cache_omnifunc = 0
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_autoclose_preview_window_after_completion = 0
-let g:ycm_autoclose_preview_window_after_insertion = 0
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CTRL-P
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode = 0 
@@ -535,7 +528,6 @@ let NERDTreeShowHidden=1
 let g:pymode_indent = 0
 let g:pymode_lint_checker = "pyflakes"
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -560,27 +552,24 @@ let delimitMate_expand_cr = 1
 imap <expr><CR> pumvisible() ? "\<C-n>" : "<Plug>delimitMateCR"
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent Guides
 " Enable indent guides on boot and allow colorschemes to style them.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <leader>i :IndentGuidesToggle<CR>
-let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_auto_colors=0
-let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
+let g:indent_guides_start_level=2
+let g:indent_guides_enable_on_vim_startup=1
 
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#1c1c1c ctermbg=234
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#303030 ctermbg=236
-
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#949494 ctermbg=246
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ag commands.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>a :Ag! "<cword>" <CR>
-vmap <leader>a y:Ag! "<C-R>" <CR>
-
+nmap <leader>a :Ag! "<cword>\s*\("<CR>
+vmap <leader>a y:Ag! "<C-R>"\s*\("<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pangloss/vim-javascript
