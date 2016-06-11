@@ -28,9 +28,6 @@
 [submodule "vim_bundles/nerdcommenter"]
 	path = vim_bundles/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "vim_bundles/tern.js"]
-	path = vim_bundles/tern.js
-	url = git://github.com/marijnh/tern_for_vim.git
 [submodule "vim_bundles/YouCompleteMe"]
 	path = vim_bundles/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
@@ -115,3 +112,6 @@
 [submodule "vim_bundles/vim-scss-syntax"]
 	path = vim_bundles/vim-scss-syntax
 	url = https://github.com/cakebaker/scss-syntax.vim.git
+[submodule "vim_bundles/vim-unimpaired"]
+	path = vim_bundles/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git

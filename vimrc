@@ -31,7 +31,7 @@ execute pathogen#helptags()
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
-set history=1000
+set history=10000
 
 " Enable filetype plugins
 filetype plugin indent on
@@ -47,9 +47,9 @@ let g:mapleader = ","
 " Completion popup menu
 " http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
 set completeopt=longest,menuone ",preview No preview window at top.
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" inoremap <expr> <CR> pumvisible() ? '\<C-y>' : '\<C-g>u\<CR>'
+" inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" inoremap <expr> <M-,> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 
 " Configure backspace so it acts as it should act
@@ -100,7 +100,20 @@ set ruler
 set foldcolumn=1
 
 " Show line number
-set nu
+autocmd FocusLost * :set number
+autocmd FocusGained * :set relativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
 
 " Height of the command bar
 set cmdheight=1
@@ -216,6 +229,9 @@ set softtabstop=2
 " Linebreak on 500 characters
 set lbr
 set tw=500
+
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 
 set ai "Auto indent
 set si "Smart indent
@@ -554,8 +570,8 @@ let g:pymode_lint_checker = "pyflakes"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tern.js
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:tern_map_keys = 1
-let g:tern_show_argument_hints='on_hold'
+" let g:tern_map_keys = 1
+" let g:tern_show_argument_hints='on_hold'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DelimitMate
@@ -682,6 +698,8 @@ let g:airline_powerline_fonts = 1
 " Top tab line
 "let g:airline#extensions#tabline#enabled = 1
 
+let g:airline#extensions#bufferline#enabled = 0
+
 " certain number of spaces are allowed after tabs, but not in between
 " this algorithm works well for /** */ style comments in a tab-indented file
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
@@ -694,7 +712,9 @@ let g:airline#extensions#whitespace#symbol = '!'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " bling/vim-bufferline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:bufferline_echo = 1
+let g:bufferline_rotate = 1
+let g:bufferline_fixed_index = 0
+let g:bufferline_show_bufnr = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -726,8 +746,8 @@ if executable("ag")
 endif
 
 " Open fuzzy search file mode like ctrl-p
-nnoremap <silent><C-p> :CtrlSpace O<CR>
-nnoremap <silent><C-b> :CtrlSpace H<CR>
+" nnoremap <silent><C-p> :CtrlSpace O<CR>
+nnoremap <silent><C-g> :CtrlSpace H<CR>
 
 let g:CtrlSpaceSearchTiming = 5
 
@@ -766,7 +786,7 @@ if executable('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts =
 	\ '--nocolor --line-numbers --nogroup --smart-case --ignore-case --hidden ' .
-	\ '--ignore ''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+	\ '--ignore ''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr''' 
   let g:unite_source_grep_recursive_opt=''
 endif
 
@@ -775,11 +795,12 @@ hi link uniteCandidateInputKeyword DiffAdd
 nnoremap [unite] <nop>
 nmap <space> [unite]
 
-nnoremap <silent> [unite]<space>  :<C-u>UniteWithCurrentDir -buffer-name=files -toggle -auto-resize file_rec/async file/new buffer bookmark<CR>
-nnoremap <silent> [unite]p 	  :<C-u>Unite -buffer-name=files -toggle -auto-resize file_rec/async:!<CR>
+nnoremap <silent> [unite]<space>  :<C-u>UniteWithCurrentDir -buffer-name=files -toggle -auto-resize bookmark buffer file_rec/async file/new<CR>
+nnoremap <silent> [unite]p 	  :<C-u>UniteWithProjectDir -buffer-name=files -toggle -auto-resize file_rec/async<CR>
+nnoremap <silent> [unite]P 	  :<C-u>UniteWithProjectDir -buffer-name=search -no-quit grep<CR>
 nnoremap <silent> [unite]s 	  :<C-u>Unite -buffer-name=qbuffers -quick-match buffer<CR>
 nnoremap <silent> [unite]l 	  :<C-u>Unite -buffer-name=line -auto-resize line<CR>
-nnoremap <silent> [unite]/ 	  :<C-u>Unite -buffer-name=search -no-quit grep:.<CR>
+nnoremap <silent> [unite]/ 	  :<C-u>UniteWithCurrentDir -buffer-name=search -no-quit grep<CR>
 nnoremap <silent> [unite]m 	  :<C-u>Unite -buffer-name=mappings -toggle -auto-resize mapping<CR>
 
 " Require https://github.com/Shougo/neomru.vim
