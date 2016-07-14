@@ -135,6 +135,35 @@ set mousehide " Hide mouse when typing
 map <silent><F3> :NEXTCOLOR<cr>
 map <silent><F2> :PREVCOLOR<cr>
 
+" Folding
+set nofoldenable
+set foldmethod=syntax
+set foldlevel=1
+
+fu! ShowFunctionNameFoldText()
+  "get first non-blank line
+  let fs = v:foldstart
+  while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+  endwhile
+  if fs > v:foldend
+    let line = getline(v:foldstart)
+  else
+    let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+  endif
+
+  let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+  let foldSize = 1 + v:foldend - v:foldstart
+  let foldSizeStr = " " . foldSize . " lines "
+  let foldLevelStr = repeat("+--", v:foldlevel)
+  let lineCount = line("$")
+  let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+  let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+  return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+endf
+
+set foldtext=ShowFunctionNameFoldText()
+
+set conceallevel=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
@@ -249,12 +278,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Specify the behavior when switching between buffers
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
-
+set switchbuf=useopen
 set showtabline=0
 
 " Return to last edit position when opening files (You want this!)
@@ -549,17 +573,11 @@ let g:pymode_lint_checker = "pyflakes"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set grepprg=ack
-" nnoremap <leader>a :Ack<space>
-" let g:ackhighlight=1
-" let g:ackprg="ag --nocolor --nogroup --column"
+let g:ackprg="ag --vimgrep --smart-case"
+nmap <leader>a yiw:Ack! "<cword>" <CR>
+nmap <leader>A yiW:Ack! "<cword>" <CR>
+vmap <leader>a y:Ack! "<cword>" <CR>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Tern.js
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:tern_map_keys = 1
-" let g:tern_show_argument_hints='on_hold'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DelimitMate
@@ -587,17 +605,10 @@ nmap <silent><leader>i :IndentGuidesToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ag commands.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>a :Ag! "<cword>" <CR>
-vmap <leader>a y:Ag! "<cword>" <CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pangloss/vim-javascript
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:javascript_enable_domhtmlcss = 1
 let g:javascript_conceal = 1
+
 let g:javascript_conceal_function   = "ƒ"
 let g:javascript_conceal_null       = "ø"
 let g:javascript_conceal_this       = "@"
@@ -758,6 +769,21 @@ let g:CtrlSpaceSaveWorkspaceOnExit = 1
 hi link CtrlSpaceNormal LineNr
 hi link CtrlSpaceSelected DiffAdd
 
+" Fold color
+hi clear Folded
+hi link Folded MoreMsg
+hi clear FoldColumn
+hi link FoldColumn Comment
+
+" Comment color
+hi Comment term=standout ctermfg=6 ctermbg=235 guifg=Cyan guibg=Grey
+
+" Conceal
+hi clear Conceal
+hi link Conceal Operator
+
+" Javascript object function key
+hi link jsFunctionKey SpecialChar
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shougo/unite.vim
@@ -772,7 +798,7 @@ call unite#custom#source('file,file_rec, file/new,file_rec/async',
 
 call unite#custom#profile('default', 'context', {
 \ 'start_insert': 1,
-\ 'winheight': 10,
+\ 'multi_line': 1,
 \ 'direction': 'botright',
 \ })
 
@@ -784,7 +810,7 @@ if executable('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts =
 	\ '--nocolor --line-numbers --nogroup --smart-case --ignore-case --hidden ' .
-	\ '--ignore ''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr''' 
+	\ '--ignore ''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
   let g:unite_source_grep_recursive_opt=''
 endif
 
@@ -813,3 +839,10 @@ nnoremap <silent> [unite]m 	  :<C-u>Unite -buffer-name=mappings -toggle -auto-re
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufRead,BufNewFile *.scss set filetype=scss.css
 autocmd FileType scss.css set iskeyword+=-
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" zhaocai/GlodenView.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:goldenview__enable_at_startup = 0
+let g:goldenview__enable_default_mapping = 0

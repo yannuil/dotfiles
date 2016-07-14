@@ -31,9 +31,6 @@
 [submodule "vim_bundles/YouCompleteMe"]
 	path = vim_bundles/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
-[submodule "vim_bundles/ag.vim"]
-	path = vim_bundles/ag.vim
-	url = https://github.com/rking/ag.vim
 [submodule "vim_bundles/vim-javascript"]
 	path = vim_bundles/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
@@ -70,9 +67,6 @@
 [submodule "vim_bundles/vim-jade"]
 	path = vim_bundles/vim-jade
 	url = git://github.com/digitaltoad/vim-jade.git
-[submodule "vim_bundles/vim-yajs"]
-	path = vim_bundles/vim-yajs
-	url = https://github.com/othree/yajs.vim
 [submodule "vim_bundles/vim-javascript-libraries-syntax"]
 	path = vim_bundles/vim-javascript-libraries-syntax
 	url = https://github.com/othree/javascript-libraries-syntax.vim
@@ -115,3 +109,9 @@
 [submodule "vim_bundles/vim-unimpaired"]
 	path = vim_bundles/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "vim_bundles/vim-gloden-view"]
+	path = vim_bundles/vim-gloden-view
+	url = https://github.com/zhaocai/GoldenView.Vim.git
+[submodule "vim_bundles/vim-ack"]
+	path = vim_bundles/vim-ack
+	url = https://github.com/mileszs/ack.vim
