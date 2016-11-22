@@ -268,8 +268,8 @@ map j gj
 map k gk
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-"map <space> /
-"map <c-space> ?
+" map <space> /
+" map <c-space> ?
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -641,7 +641,7 @@ let g:EasyMotion_use_smartsign_us = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:incsearch#auto_nohlsearch = 1
 map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
+map //  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 map n  <Plug>(incsearch-nohl-n)

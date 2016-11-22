@@ -115,3 +115,9 @@
 [submodule "vim_bundles/vim-ack"]
 	path = vim_bundles/vim-ack
 	url = https://github.com/mileszs/ack.vim
+[submodule "vim_bundles/vim-obsession"]
+	path = vim_bundles/vim-obsession
+	url = https://github.com/tpope/vim-obsession.git
+[submodule "vim_bundles/vim-ternjs"]
+	path = vim_bundles/vim-ternjs
+	url = https://github.com/ternjs/tern_for_vim.git
